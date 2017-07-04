@@ -98,16 +98,11 @@ public final class StreamAllocation {
     this.callStackTrace = callStackTrace;
   }
 
-<<<<<<< HEAD
-  public HttpCodec newStream(OkHttpClient client, boolean doExtensiveHealthChecks, int readTimeout) {
-    int connectTimeout = client.connectTimeoutMillis();
-=======
   public HttpCodec newStream(
       OkHttpClient client, Interceptor.Chain chain, boolean doExtensiveHealthChecks) {
     int connectTimeout = client.connectTimeoutMillis();
     int readTimeout = chain.readTimeoutMillis();
->>>>>>> square_okhttp_master
-    int writeTimeout = client.writeTimeoutMillis();
+    int writeTimeout = chain.writeTimeoutMillis();
     boolean connectionRetryEnabled = client.retryOnConnectionFailure();
 
     try {
